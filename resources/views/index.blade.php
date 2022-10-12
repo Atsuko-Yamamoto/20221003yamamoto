@@ -13,12 +13,12 @@
     <div class="card">
       <p class="title mb-15">Todo List</p>
       <div class="todo">
-        <form action="{{ route('destroy', $todos->id) }}" method="post" class="flex between mb-30">
+        <form action="" method="post" class="flex between mb-30">
           @csrf
           <input type="hidden" name="_token" value="">
-          <input type="text" name="content" class="input_add">
+          <input type="text" name="content" class="input-add">
           <button type="submit" class="button-add">追加</button>
-          <button type="submit" class="button-add">削除</button>
+          
         </form>
         <table>
           <tbody>
@@ -31,16 +31,21 @@
             @foreach ($todos as $todo)
             <tr>
               <td>
-                    {{$todo->created_at}}
-                  </td>
-                  <td>
+                  {{$todo->created_at}}
+              </td>
+              <form action="" method="post"></form>
+              <input type="hidden" neme="_token" value="">
+              <td>
                   {{$todo->content}}
                 </td>
                 <td>
-                {{$todo->created_at}}
+                <button class="button-update">更新</button>
               </td>
               <td>
-              {{$todo->updated_at}}
+              <form action="" method="post">
+              <input type="hidden" neme="_token" value="">
+              <button class="button-delete">削除</button>  
+              </form>
             </td>
           </tr>
           @endforeach
