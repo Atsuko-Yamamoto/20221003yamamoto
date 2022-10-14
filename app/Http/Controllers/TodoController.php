@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
-use Illuminate\Http\TaskRequest;
+use Illuminate\Http\TodoRequest;
 
-class TaskController extends Controller
+class TodoController extends Controller
  {
   
   public function index()
   {
     $todos = Todo::all();
     return view('index', ['todos' => $todos]);
-  }  //
+  }  
 
-  public function create(TaskRequest $request)
+  public function create(TodoRequest $request)
   {
   $content = $request->input('content');
   }
@@ -22,14 +22,16 @@ class TaskController extends Controller
    /**
      * 削除処理
      */
-    public function destroy($id)
+    public function destroy()
     {
-        // テーブルから指定のIDのレコード1件を取得
+      dd($id);
+      // テーブルから指定のIDのレコード1件を取得
         $todos = Todo::find($id);
         // レコードを削除
         $todos->delete();
         // 削除したら一覧画面にリダイレクト
-        return redirect()->route('index');
-    }
+        // return redirect()->route('index');
+        return view('destroy',['todos' => $todos]);
+      }
 }
 

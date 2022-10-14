@@ -42,9 +42,9 @@
                 <button class="button-update">更新</button>
               </td>
               <td>
-              <form action="" method="post">
+              <form action="{{ route('todo.destroy', ['id'=>$todo->id]) }}" method="post">
               <input type="hidden" neme="_token" value="">
-              <button class="button-delete">削除</button>  
+              <button class="button-delete" type="submit">削除</button>
               </form>
             </td>
           </tr>
