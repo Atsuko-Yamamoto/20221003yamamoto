@@ -14,6 +14,11 @@ class Todo extends Model
     protected $primaryKey = 'todo_id';
     protected $guarded = ['id', 'content', 'created_at', 'updated_at'];
 
+    public function findAllTodos()
+    {
+        return Todo::all();
+    }
+
     /**
      * リクエストされたIDをもとにtodoテーブルのレコードを1件取得
      */

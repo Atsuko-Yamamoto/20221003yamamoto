@@ -13,7 +13,7 @@
     <div class="card">
       <p class="title mb-15">Todo List</p>
       <div class="todo">
-        <form action="" method="post" class="flex between mb-30">
+        <form action="{{ route('todo.store') }}" method="post" class="flex between mb-30">
           @csrf
           <input type="text" name="content" class="input-add">
           <button type="submit" class="button-add">追加</button>

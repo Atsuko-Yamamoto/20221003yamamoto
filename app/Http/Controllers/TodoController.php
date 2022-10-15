@@ -13,60 +13,56 @@ class TodoController extends Controller
         $this->todo = new Todo();
     }
 
-
+/**
+     * 一覧画面
+     */
   public function index()
   {
-    $todos = $this->todos->findAllTodos();
-    return view('todo.index', compact('todos'));
+    $todos = $this->todo->findAllTodos();
+    //$todos = Todo::all();
+
+    // return view('index', ['todos' => $todos]);
+    return view('index', compact('todos'));    
   }  
 
  /**
      * 登録画面
      */
-    public function create(Request $request)
+    public function create(TodoRequest $request)
     {        
-        return view('todo.create');
+        return view('index');
     }
 
     /**
      * 登録処理
      */
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         $registerTodo = $this->todo->InsertTodo($request);
-        return redirect()->route('todo.index');
+        return redirect()->route('todo.store');
     }
 
-    /**
-     * 詳細画面の表示
-     */
-    public function show($id)
-    {
-        $todo = Todo::find($id);
-
-        return view('todo.show', compact('todos'));
-    }
-
+    
     /**
      * 編集画面の表示
      */
-    public function edit($id)
-    {
-        $todo = Todo::find($id);
+    // public function edit($id)
+    // {
+    //     $todo = Todo::find($id);
 
-        return view('todo.edit', compact('todos'));
-    }
+    //     return view('todo.edit', compact('todos'));
+    // }
 
     /**
      * 更新処理
      */
-    public function update(Request $request, $id)
-    {
-        $todo = Todo::find($id);
-        $updateTodo = $this->todo->updateTodo($request, $todo);
+    // public function update(Request $request, $id)
+    // {
+    //     $todo = Todo::find($id);
+    //     $updateTodo = $this->todo->updateTodo($request, $todo);
 
-        return redirect()->route('todo.index');
-    }
+    //     return redirect()->route('todo.index');
+    // }
 
 
 
