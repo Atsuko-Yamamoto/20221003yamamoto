@@ -9,5 +9,5 @@ class Todo extends Model
 {
     use HasFactory;
     protected $table = 'todos';
-    protected $guarded = ['created_at', 'updated_at'];
+    protected $guarded = ['id', 'content', 'created_at', 'updated_at'];
 }

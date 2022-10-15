@@ -22,9 +22,8 @@ class TodoController extends Controller
    /**
      * 削除処理
      */
-    public function destroy()
+    public function destroy($id)
     {
-      dd($id);
       // テーブルから指定のIDのレコード1件を取得
         $todos = Todo::find($id);
         // レコードを削除
