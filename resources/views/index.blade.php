@@ -15,7 +15,6 @@
       <div class="todo">
         <form action="" method="post" class="flex between mb-30">
           @csrf
-          <input type="hidden" name="_token" value="">
           <input type="text" name="content" class="input-add">
           <button type="submit" class="button-add">追加</button>
           
@@ -34,7 +33,7 @@
                   {{$todo->created_at}}
               </td>
               <form action="" method="post"></form>
-              <input type="hidden" neme="_token" value="">
+              <input type="hidden" name="_token" value="">
               <td>
                   {{$todo->content}}
                 </td>
@@ -43,7 +42,8 @@
               </td>
               <td>
               <form action="{{ route('todo.destroy', ['id'=>$todo->id]) }}" method="post">
-              <input type="hidden" neme="_token" value="">
+              <!-- <input type="hidden" name="_token" value=""> -->
+              @csrf
               <button class="button-delete" type="submit">削除</button>
               </form>
             </td>
