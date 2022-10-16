@@ -11,8 +11,8 @@ class Todo extends Model
        // モデルに関連付けるテーブル
     protected $table = 'todos';
     // テーブルに関連付ける主キー
-    protected $primaryKey = 'todo_id';
-    protected $guarded = ['id', 'content', 'created_at', 'updated_at'];
+    protected $primaryKey = 'id';
+    protected $guarded = ['id', 'created_at'];
 
     public function findAllTodos()
     {
@@ -34,7 +34,9 @@ class Todo extends Model
     {
         // リクエストデータを基に管理マスターユーザーに登録する
         return $this->create([
-            'todo_name' => $request->todo_name,
+            //'todo_name' => $request->todo_name,
+            'content' => $request->content,
+
         ]);
     }
 
@@ -43,10 +45,11 @@ class Todo extends Model
      */
     public function updateTodo($request, $todo)
     {
+  
         $result = $todo->fill([
-            'todo_name' => $request->todo_name
+            'content' => $request->content
         ])->save();
-
+        
         return $result;
     }
 }

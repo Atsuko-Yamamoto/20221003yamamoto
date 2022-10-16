@@ -33,13 +33,20 @@
                   {{$todo->created_at}}
               </td>
               <form action="" method="post"></form>
-              <input type="hidden" name="_token" value="">
+              <!-- <input type="hidden" name="_token" value=""> -->
+              @csrf
+              <form action="{{ route('todo.update', ['id'=>$todo->id]) }}" method="post">
               <td>
-                  {{$todo->content}}
+                  <!-- {{$todo->content}} -->
+                  <input type="text" class="input-update" value="{{$todo->content}}" name="content">
                 </td>
                 <td>
-                <button class="button-update">更新</button>
+                  
+                  @csrf
+                  <button class="button-update">更新</button>
+                  
               </td>
+              </form>
               <td>
               <form action="{{ route('todo.destroy', ['id'=>$todo->id]) }}" method="post">
               <!-- <input type="hidden" name="_token" value=""> -->

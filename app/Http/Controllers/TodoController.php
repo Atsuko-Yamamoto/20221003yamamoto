@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoRequest;
 use App\Models\Todo;
-use Illuminate\Http\TodoRequest;
+use Illuminate\Http\Request;
 
 class TodoController extends Controller
  {
@@ -28,19 +29,21 @@ class TodoController extends Controller
  /**
      * 登録画面
      */
-    public function create(TodoRequest $request)
-    {        
-        return view('index');
-    }
+    // public function create(Request $request)
+    // {        
+    //   return view('index');
+    // }
 
     /**
      * 登録処理
      */
-    public function store(TodoRequest $request)
-    {
+    public function store(Request $request)
+    {  
         $registerTodo = $this->todo->InsertTodo($request);
-        return redirect()->route('todo.store');
-    }
+
+        //return redirect('/');
+        return redirect()->route('todo.index');
+      }
 
     
     /**
@@ -56,13 +59,15 @@ class TodoController extends Controller
     /**
      * 更新処理
      */
-    // public function update(Request $request, $id)
-    // {
-    //     $todo = Todo::find($id);
-    //     $updateTodo = $this->todo->updateTodo($request, $todo);
+    public function update(Request $request, $id)
+    {
+      
+        $todos = Todo::find($id);
+        
+        $updateTodo = $this->todo->updateTodo($request, $todos);
 
-    //     return redirect()->route('todo.index');
-    // }
+        return redirect()->route('todo.index');
+    }
 
 
 
@@ -71,13 +76,17 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
+      //dd($id);
+
       // テーブルから指定のIDのレコード1件を取得
         $todos = Todo::find($id);
+
         // レコードを削除
         $todos->delete();
         // 削除したら一覧画面にリダイレクト
+        
         return redirect()->route('todo.index');
-        // return view('destroy',['todos' => $todos]);
+        //  return view('destroy',['todos' => $todos]);
       }
 
 
