@@ -12,13 +12,11 @@
   <div class="container">
     <div class="card">
       <p class="title mb-15">Todo List</p>
-      <div class="todo">
-        @if ($errors->any())
-          <p class="error-message">入力内容をご確認ください。</p>
-        @endif
+        @if($errors->has('content'))<span>{{ $errors->first('content') }}</span>@endif
+        <div class="todo">
         <form action="{{ route('todo.create') }}" method="post" class="flex between mb-30">
           @csrf
-          <input type="text" name="content" class="input-add">
+          <input type="text" name="content" class="input-add" value="{{ old('content') }}">
           <button type="submit" class="button-add">追加</button>
         </form>
         <table>
