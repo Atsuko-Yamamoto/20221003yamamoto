@@ -11,7 +11,12 @@ class TodoController extends Controller
   
    public function __construct()
     {
-        $this->todo = new Todo();
+      // do nothing
+    }
+
+    public function __destruct()
+    {
+      // do nothing
     }
 
 /**
@@ -19,74 +24,42 @@ class TodoController extends Controller
      */
   public function index()
   {
-    $todos = $this->todo->findAllTodos();
-    //$todos = Todo::all();
-
-    // return view('index', ['todos' => $todos]);
+    $todos = Todo::all();
     return view('index', compact('todos'));    
   }  
-
- /**
-     * 登録画面
-     */
-    // public function create(Request $request)
-    // {        
-    //   return view('index');
-    // }
 
     /**
      * 登録処理
      */
-    public function store(Request $request)
+    public function create(TodoRequest $request)
     {  
-        $registerTodo = $this->todo->InsertTodo($request);
+        Todo::create(['content' => $request->content,]);
 
-        //return redirect('/');
         return redirect()->route('todo.index');
       }
-
-    
-    /**
-     * 編集画面の表示
-     */
-    // public function edit($id)
-    // {
-    //     $todo = Todo::find($id);
-
-    //     return view('todo.edit', compact('todos'));
-    // }
 
     /**
      * 更新処理
      */
-    public function update(Request $request, $id)
+    public function update(TodoRequest $request, $id)
     {
       
         $todos = Todo::find($id);
-        
-        $updateTodo = $this->todo->updateTodo($request, $todos);
-
+        $todos->fill(['content' => $request->content])->save();
         return redirect()->route('todo.index');
     }
 
-
-
-   /**
+    /**
      * 削除処理
      */
     public function destroy($id)
     {
-      //dd($id);
-
       // テーブルから指定のIDのレコード1件を取得
         $todos = Todo::find($id);
-
         // レコードを削除
         $todos->delete();
         // 削除したら一覧画面にリダイレクト
-        
         return redirect()->route('todo.index');
-        //  return view('destroy',['todos' => $todos]);
       }
 
 

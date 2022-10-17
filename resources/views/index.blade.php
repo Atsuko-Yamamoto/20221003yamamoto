@@ -13,11 +13,13 @@
     <div class="card">
       <p class="title mb-15">Todo List</p>
       <div class="todo">
-        <form action="{{ route('todo.store') }}" method="post" class="flex between mb-30">
+        @if ($errors->any())
+          <p class="error-message">入力内容をご確認ください。</p>
+        @endif
+        <form action="{{ route('todo.create') }}" method="post" class="flex between mb-30">
           @csrf
           <input type="text" name="content" class="input-add">
           <button type="submit" class="button-add">追加</button>
-          
         </form>
         <table>
           <tbody>
@@ -33,23 +35,18 @@
                   {{$todo->created_at}}
               </td>
               <form action="" method="post"></form>
-              <!-- <input type="hidden" name="_token" value=""> -->
               @csrf
               <form action="{{ route('todo.update', ['id'=>$todo->id]) }}" method="post">
               <td>
-                  <!-- {{$todo->content}} -->
                   <input type="text" class="input-update" value="{{$todo->content}}" name="content">
                 </td>
                 <td>
-                  
                   @csrf
                   <button class="button-update">更新</button>
-                  
               </td>
               </form>
               <td>
               <form action="{{ route('todo.destroy', ['id'=>$todo->id]) }}" method="post">
-              <!-- <input type="hidden" name="_token" value=""> -->
               @csrf
               <button class="button-delete" type="submit">削除</button>
               </form>
