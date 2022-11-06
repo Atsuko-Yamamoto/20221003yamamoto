@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TodoRequest;
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
  {
@@ -24,8 +25,11 @@ class TodoController extends Controller
      */
   public function index()
   {
+    $user = Auth::user();
     $todos = Todo::all();
-    return view('index', compact('todos'));    
+    $param = ['todos' => $todos, 'user' =>$user];
+    // return view('index', compact('todos' , 'user'));
+    return view('index', $param);    
   }  
 
     /**
@@ -34,7 +38,6 @@ class TodoController extends Controller
     public function create(TodoRequest $request)
     {  
         Todo::create(['content' => $request->content,]);
-
         return redirect()->route('todo.index');
       }
 

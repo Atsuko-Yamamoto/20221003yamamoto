@@ -12,6 +12,14 @@
   <div class="container">
     <div class="card">
       <p class="title mb-15">Todo List</p>
+      <div class="auth mb-15">
+        <p class="detail">{{$user->name}}でログイン中</p>
+        <form method="post" action="logout">
+          @csrf
+          <input type="submit" class="btn btn-logout" value="ログアウト">
+        </form>
+      </div>
+      <a class="btn btn-search" href="">タスク検索</a>
         @if($errors->has('content'))<span>{{ $errors->first('content') }}</span>@endif
         <div class="todo">
         <form action="{{ route('todo.create') }}" method="post" class="flex between mb-30">
@@ -37,6 +45,15 @@
               <form action="{{ route('todo.update', ['id'=>$todo->id]) }}" method="post">
               <td>
                   <input type="text" class="input-update" value="{{$todo->content}}" name="content">
+                </td>
+                <td>
+                  <select name="tag_id" class="select-tag">
+                    <option value="1">家事</option>
+                    <option value="2">勉強</option>
+                    <option value="3">運動</option>
+                    <option value="4">食事</option>
+                    <option value="5">移動</option>
+                  </select>
                 </td>
                 <td>
                   @csrf

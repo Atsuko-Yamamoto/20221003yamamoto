@@ -12,6 +12,5 @@ class Todo extends Model
     protected $table = 'todos';
     // テーブルに関連付ける主キー
     protected $primaryKey = 'id';
-    protected $guarded = ['id', 'created_at'];
-
+    protected $fillable = ['content', 'updated_at', 'user_id', 'tag_id'];
 }

@@ -111,6 +111,11 @@ select {
     border-radius: 10px;
 }
 
+.card__header {
+    display: flex;
+    justify-content: space-between;
+}
+
 .title {
     font-weight: bold;
     font-size: 24px;
@@ -203,5 +208,65 @@ tr {
 .button-delete:hover {
     background-color: #71fadc;
     border-color: #71fadc;
+    color: #fff;
+}
+
+.auth {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.auth > .detail {
+    margin-right: 1rem;
+}
+
+.btn {
+    text-align: left;
+    font-size: 12px;
+    background-color: #fff;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.4s;
+    outline: none;
+}
+
+.btn-logout {
+    border: 2px solid #ff0000;
+    color: #ff0000;
+}
+
+.btn-logout:hover {
+    background-color: #ff0000;
+    border-color: #ff0000;
+    color: #fff;
+}
+
+.btn-search {
+    display: inline-block;
+    border: 2px solid #cdf119;
+    color: #cdf119;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.btn-search:hover {
+    background-color: #cdf119;
+    border-color: #cdf119;
+    color: #fff;
+}
+
+.btn-back {
+    border: 2px solid #6d7170;
+    color: #6d7170;
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    background-color: #6d7170;
+    border-color: #6d7170;
     color: #fff;
 }
