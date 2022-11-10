@@ -111,7 +111,7 @@ select {
     border-radius: 10px;
 }
 
-.card__header {
+.card_header {
     display: flex;
     justify-content: space-between;
 }
@@ -268,5 +268,16 @@ tr {
 .btn-back:hover {
     background-color: #6d7170;
     border-color: #6d7170;
+    color: #fff;
+}
+
+.btn-add {
+    border: 2px solid #dc70fa;
+    color: #dc70fa;
+}
+
+.btn-add:hover {
+    background-color: #dc70fa;
+    border-color: #dc70fa;
     color: #fff;
 }

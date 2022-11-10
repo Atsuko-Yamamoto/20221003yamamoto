@@ -14,7 +14,7 @@
       <div class="card_header">
         <p class="title mb-15">タスク検索</p>
         <div class="auth mb-15">
-        <p class="detail"></p>
+        <p class="detail">{{$user->name}}でログイン中</p>
         <form method="post" action="logout">
           @csrf
           <input type="submit" class="btn btn-logout" value="ログアウト">
@@ -22,10 +22,10 @@
       </div>
       </div>
       <div class="todo">
-        <form action="/todo/search" method="get" class="flex between mb-30">
+        <form action="{{route('todo.search')}}" method="get" class="flex between mb-30">
           @csrf
-          <input type="text" class="input-add" name="content">
-          <select name="tag_id" class="select-tag">
+          <input type="text" class="input-add" name="search_content">
+          <select name="search_tag" class="select-tag">
             <option disabled selected value></option>
             <option value="1">家事</option>
             <option value="2">勉強</option>
@@ -47,7 +47,7 @@
           </tbody>
         </table>
       </div>
-      <a class="btn btn-back" href="./index.blade.php">戻る</a>
+      <a class="btn btn-back" href="{{route('todo.index')}}">戻る</a>
     </div>
   </div>  
 </body>

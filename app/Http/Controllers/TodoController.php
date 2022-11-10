@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TodoRequest;
 use App\Models\Todo;
+use App\Models\User;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,14 +22,19 @@ class TodoController extends Controller
       // do nothing
     }
 
-/**
+    /**
      * 一覧画面
      */
   public function index()
   {
     $user = Auth::user();
-    $todos = Todo::all();
-    $param = ['todos' => $todos, 'user' =>$user];
+    $user_id = Auth::id();
+
+    $todos = Todo::where('user_id', $user_id)->get();
+    // $todos = Todo::all();
+    
+    $tags = Tag::all();
+    $param = ['todos' => $todos, 'user' =>$user, 'tags' => $tags];
     // return view('index', compact('todos' , 'user'));
     return view('index', $param);    
   }  
@@ -37,8 +44,11 @@ class TodoController extends Controller
      */
     public function create(TodoRequest $request)
     {  
-        Todo::create(['content' => $request->content,]);
-        return redirect()->route('todo.index');
+      $user_id = Auth::id();
+      Todo::create(['content' => $request->content,
+                    'tag_id' => $request->tag_id,
+                    'user_id' => $user_id]);
+      return redirect()->route('todo.index');
       }
 
     /**
@@ -46,9 +56,8 @@ class TodoController extends Controller
      */
     public function update(TodoRequest $request, $id)
     {
-      
         $todos = Todo::find($id);
-        $todos->fill(['content' => $request->content])->save();
+        $todos->fill(['content' => $request->content,'tag_id' => $request->tag_id])->save();       
         return redirect()->route('todo.index');
     }
 
@@ -65,6 +74,42 @@ class TodoController extends Controller
         return redirect()->route('todo.index');
       }
 
+    /**
+     * 検索画面
+     */
+  public function find()
+  {
+    $user = Auth::user();
+    $user_id = Auth::id();
+    $todos = Todo::where('user_id', $user_id)->get();
+    $tags = Tag::all();
+    $param = ['todos' => $todos, 'user' =>$user, 'tags' => $tags];
+    return view('find', $param);    
+  }  
 
+      /**
+     * 検索機能
+     */
+  public function search(TodoRequest $request)
+  {
+    $user = Auth::user();
+    $user_id = Auth::id();
+    $tags = Tag::all();
+
+    //検索フォームに入力された値を取得
+    $search_content = $request->input('search_content');
+    dd($search_content);
+    $search_tag = $request->input('search_tag');
+    $query = Todo::query();
+
+    if(!empty($search_content)){
+      $query->where('content', 'like', '%'.$search_content.'%');
+    }
+    if(!empty($search_tag)){
+      $query = Todo::where('tag_id', $search_id);
+    }
+    $data = $query->get();
+    return view('find', compact('data', 'search_content', 'search_tag'));    
+  }  
 }
 
