@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TodoRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\Todo;
 use App\Models\User;
 use App\Models\Tag;
@@ -29,14 +30,14 @@ class TodoController extends Controller
   {
     $user = Auth::user();
     $user_id = Auth::id();
-
-    $todos = Todo::where('user_id', $user_id)->get();
-    // $todos = Todo::all();
-    
     $tags = Tag::all();
-    $param = ['todos' => $todos, 'user' =>$user, 'tags' => $tags];
+    $todos = Todo::where('user_id', $user_id)->get();
+    
+        // $todos = Todo::all();
+    //$param = ['todos' => $todos, 'user' =>$user, 'tags' => $tags];
     // return view('index', compact('todos' , 'user'));
-    return view('index', $param);    
+    //return view('index', $param);  
+    return view('index', compact('todos', 'user', 'tags'));   
   }  
 
     /**
@@ -90,11 +91,13 @@ class TodoController extends Controller
       /**
      * 検索機能
      */
-  public function search(TodoRequest $request)
+  public function search(SearchRequest $request)
   {  
     $user = Auth::user();
     $user_id = Auth::id();
+    //$todos = Todo::where('user_id', $user_id)->get();
     $tags = Tag::all();
+    //$param = ['todos' => $todos, 'tags' => $tags];
 
     //検索フォームに入力された値を取得
     $search_content = $request->input('search_content');
@@ -105,10 +108,10 @@ class TodoController extends Controller
       $query->where('content', 'like', '%'.$search_content.'%');
     }
     if(!empty($search_tag)){
-      $query = Todo::where('tag_id', $search_id);
+      $query = Todo::where('tag_id', $search_tag);
     }
-    $data = $query->get();
-    return view('todo.search', compact('data', 'search_content', 'search_tag'));
+    $todos = $query->get();
+    return view('find', compact('todos', 'tags', 'user'));
   }  
 }
 

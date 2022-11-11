@@ -1,3 +1,4 @@
+@extends('layouts.default')
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -35,17 +36,6 @@
           </select>
           <input class="btn btn-add" type="submit" value="検索">
         </form>
-        <table>
-          <tbody>
-            <tr>
-              <th>作成日</th>
-              <th>タスク名</th>
-              <th>タグ</th>
-              <th>更新</th>
-              <th>削除</th>
-            </tr>
-          </tbody>
-        </table>
       </div>
       <a class="btn btn-back" href="{{route('todo.index')}}">戻る</a>
     </div>
