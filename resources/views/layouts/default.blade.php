@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  @yield('existing')
   <table>
           <tbody>
             <tr>
@@ -53,5 +52,6 @@
           @endforeach
           </tbody>
         </table>
+          @yield('existing')
 </body>
 </html>

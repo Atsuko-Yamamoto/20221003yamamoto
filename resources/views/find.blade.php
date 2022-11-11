@@ -40,5 +40,7 @@
       <a class="btn btn-back" href="{{route('todo.index')}}">戻る</a>
     </div>
   </div>  
+  @section('existing')
+  @endsection
 </body>
 </html>
