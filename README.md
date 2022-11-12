@@ -1,17 +1,18 @@
 # Todo List
 
 タスク管理用アプリケーション
-![todo_list](https://user-images.githubusercontent.com/112733879/196066303-42871e7e-3d43-40b8-930d-b725e5ac94b8.png)
+![new_todo_list](https://user-images.githubusercontent.com/112733879/201497573-ff89a85e-dffd-4b43-82c3-9764c489b55d.png)
 
 ## 作成した目的
 
-サーバ上で不特定多数のユーザがタスクを管理できるようにするためのアプリです
+サーバ上でユーザが自身のタスクを管理できるようにするためのアプリです
 
 ## 機能一覧
 
 -   タスクの追加
 -   タスクの更新
 -   タスクの削除
+-   タスクの検索
 
 ## 使用技術（実行環境）
 
@@ -20,11 +21,12 @@
 
 ## テーブル設計
 
-![todos_table](https://user-images.githubusercontent.com/112733879/196066351-767d2e33-0a33-4169-b4fe-388c172e8dfe.png)
+![table1](https://user-images.githubusercontent.com/112733879/201497624-48ba996f-33c8-4b64-a8f6-609160d3bc21.png)
+![table2](https://user-images.githubusercontent.com/112733879/201497629-4c98e013-e2b5-4a5d-babb-2bca0070d157.png)
 
 ## ER 図
 
-![blueprint](https://user-images.githubusercontent.com/112733879/196066374-a97cd1db-92ec-4914-afa3-f394d7ec7fbe.png)
+![todo_er](https://user-images.githubusercontent.com/112733879/201497647-36bdbe5a-1d2a-4b32-8826-c930b450dd93.png)
 
 ## 作成者
 

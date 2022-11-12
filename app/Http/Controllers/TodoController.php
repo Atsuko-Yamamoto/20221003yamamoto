@@ -84,8 +84,8 @@ class TodoController extends Controller
     $user_id = Auth::id();
     $todos = Todo::where('user_id', $user_id)->get();
     $tags = Tag::all();
-    $param = ['todos' => $todos, 'user' =>$user, 'tags' => $tags];
-    return view('find', $param);    
+    //$param = ['todos' => $todos, 'user' =>$user, 'tags' => $tags];
+    return view('find', compact('todos', 'tags', 'user'));    
   }  
 
       /**
