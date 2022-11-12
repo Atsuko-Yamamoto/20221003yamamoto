@@ -1,4 +1,3 @@
-@extends('layouts.default')
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -34,13 +33,30 @@
             <option value="4">食事</option>
             <option value="5">移動</option>
           </select>
-          <input class="btn btn-add" type="submit" value="検索">
+          <input class="btn btn-add" type="submit" value="検索" name="search">
         </form>
+      <table>
+          <tbody>
+            <tr>
+              <th>作成日</th>
+              <th>タスク</th>
+              <th>タグ</th>
+              <th>更新</th>
+              <th>削除</th>
+              </tr>
+              <tr>
+                <td>
+                  @if(isset($_POST['search'])){
+                    $result = "{{ route('todo.search') }}"
+                  }
+                  @endif
+                </td>
+              </tr>
+          </tbody>
+        </table>
       </div>
       <a class="btn btn-back" href="{{route('todo.index')}}">戻る</a>
     </div>
   </div>  
-  @section('existing')
-  @endsection
 </body>
 </html>
