@@ -30,7 +30,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email', 'min:8', 'max:191', Rule::unique('users')->ignore($this->user->email ?? null)],
+            'email' => ['required', 'string', 'email', 'min:8', 'max:191'],
             'password' => ['required', 'string', 'min:8', 'max:191'],
         ];
     }

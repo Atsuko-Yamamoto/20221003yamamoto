@@ -15,9 +15,9 @@ use App\Http\Controllers\TodoController;
 */
 
 //一覧画面の表示
-Route::get('/home', [TodoController::class, 'index'])->name('todo.index');
+Route::get('/', [TodoController::class, 'index'])->name('todo.index')->middleware('auth');
 //検索画面の表示
-Route::get('/find', [TodoController::class, 'find'])->name('todo.find');
+Route::get('/find', [TodoController::class, 'find'])->name('todo.find')->middleware('auth');
 // 登録処理
 Route::post('/create', [TodoController::class, 'create'])->name('todo.create');
 // 更新処理
@@ -28,7 +28,7 @@ Route::post('/destroy{id}', [TodoController::class, 'destroy'])->name('todo.dest
 Route::get('/search', [TodoController::class, 'search'])->name('todo.search');
 
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
 });
 
