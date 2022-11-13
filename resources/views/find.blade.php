@@ -27,11 +27,9 @@
           <input type="text" class="input-add" name="search_content">
           <select name="search_tag" class="select-tag">
             <option disabled selected value></option>
-            <option value="1">家事</option>
-            <option value="2">勉強</option>
-            <option value="3">運動</option>
-            <option value="4">食事</option>
-            <option value="5">移動</option>
+            @foreach ($tags as $tag)
+                      <option value="{{$tag->id}}">{{$tag->tag}}</option>
+            @endforeach
           </select>
           <input class="btn btn-add" type="submit" value="検索" name="search">
         </form>

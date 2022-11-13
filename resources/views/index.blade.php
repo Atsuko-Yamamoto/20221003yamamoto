@@ -28,11 +28,9 @@
           @csrf
           <input type="text" name="content" class="input-add" value="{{ old('content') }}">
           <select name="tag_id" class="select-tag">
-                    <option value="1">家事</option>
-                    <option value="2">勉強</option>
-                    <option value="3">運動</option>
-                    <option value="4">食事</option>
-                    <option value="5">移動</option>
+                    @foreach ($tags as $tag)
+                      <option value="{{$tag->id}}">{{$tag->tag}}</option>
+                    @endforeach
                   </select>
           <button type="submit" class="button-add">追加</button>
         </form>
